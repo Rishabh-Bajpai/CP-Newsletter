@@ -20,14 +20,14 @@
     }
   </style>
 
-  <!-- GA4 tag (replace G-XXXXXXXXXX with your own Measurement ID) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N2C2XRVYD0"></script> 
+  <!-- GA4 tag with your Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N2C2XRVYD0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    // Initialize GA4
+    // Initialize GA4 with your ID
     gtag('config', 'G-N2C2XRVYD0');
   </script>
 </head>
@@ -45,25 +45,24 @@
   </details>
 
   <script>
-    // Function to send GA4 event when a section is expanded
-    function registerEngagement(sectionId) {
-      console.log("Section opened:", sectionId);
-      gtag('event', 'section_open', {
-        'section_id': sectionId,
-        'section_name': sectionId === 'cat-section' ? 'Cat' : 'Dog'
-      });
-    }
-
-    // Attach event listeners
+    // Separate GA4 events for Cat and Dog
     document.getElementById("cat-section").addEventListener("toggle", function() {
       if (this.open) {
-        registerEngagement("cat-section");
+        console.log("Cat section opened");
+        gtag('event', 'cat_section_open', {
+          'event_category': 'engagement',
+          'event_label': 'Cat Section'
+        });
       }
     });
 
     document.getElementById("dog-section").addEventListener("toggle", function() {
       if (this.open) {
-        registerEngagement("dog-section");
+        console.log("Dog section opened");
+        gtag('event', 'dog_section_open', {
+          'event_category': 'engagement',
+          'event_label': 'Dog Section'
+        });
       }
     });
   </script>
